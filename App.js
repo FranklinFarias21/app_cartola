@@ -1,20 +1,65 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Dashboard from './src/pages/Dashboard';
+import Escalacao from './src/pages/Escalacao';
+import Amigos from './src/pages/Amigos';
+import { MaterialCommunityIcons, Ionicons  } from '@expo/vector-icons'
+import Competicoes from './src/pages/Competicoes';
+import Pro from './src/pages/Pro';
 
 export default function App() {
+
+  Tab = createBottomTabNavigator()
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator screenOptions={{
+        tabBarActiveTintColor:'orange',
+        tabBarInactiveTintColor:'gray',
+      
+        headerStyle:{
+          backgroundColor: '#ff7400',
+        },
+        headerTintColor: '#fff',
+      
+        tabBarStyle: {
+          paddingTop: 5,
+          paddingBottom: 5,
+          borderTopColor: 'transparent',
+        },
+      }} 
+      >
+
+        <Tab.Screen name="Dashboard" component={Dashboard} options={{
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name='view-grid-outline' color={color} size={size}/>
+          )
+        }}/>
+
+        <Tab.Screen name="Escalação" component={Escalacao} options={{
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name='soccer-field' color={color} size={size}/>
+          )
+        }}/>
+        <Tab.Screen name="Competições" component={Competicoes} options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name='trophy-outline' color={color} size={size}/>
+          )
+        }}/>
+        <Tab.Screen name="Amigos" component={Amigos} options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name='people-outline' color={color} size={size}/>
+          )
+        }}/>
+        <Tab.Screen name="Cartola Pro" component={Pro} options={{
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name='lock-outline' color={color} size={size}/>
+          )
+        }}/>
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
