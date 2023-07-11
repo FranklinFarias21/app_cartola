@@ -1,45 +1,211 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Cabecalho from "../../components/Cabecalho";
+import Card from "../../components/Card";
+import { useEffect, useState } from "react";
 
 const Dashboard = () => {
+
+    const [rodadas, setRodadas] = useState([])
+    const [clubes, setClubes] = useState([])
+
+    useEffect(() => {
+        fetch('https://api.cartola.globo.com/partidas', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then((resp) => resp.json())
+        .then((data) => {
+            setRodadas(data.partidas)
+        })
+        .then((data) => {
+            setClubes(data.clubes)
+        })
+        .catch((error) => {
+            console.error('Erro ao obter dados:', error)
+        })
+    }, [])
+
+    {Object.values(clubes).forEach(clube => {
+        console.log(clube.nome_fantasia)
+    })}
+
     return (
-        <View>
-            <Cabecalho />
-            <View style={styles.container}>
+        <ScrollView>
+            <View>
+                <Cabecalho />
+                <View style={styles.container}>
+                    <Card>
+                        <View style={styles.perfil}>
+                            <Text style={styles.verPerfil}>VER PERFIL</Text>
+                        </View>
+                        <View style={styles.containerCard}>
+                            <View>
+                                <Image style={styles.image} source={require('../../../assets/escudo.png')}/>
+                            </View>
+                            <View>
+                                <Text style={styles.nomePerfil}>Franklin_RB</Text>
+                                <Text style={styles.nivelPerfil}>Nível Bronze II</Text>
+                            </View>
+                        </View>
+                        <View style={styles.containerConteudo}>
+                            <View>
+                                <Text style={styles.titulo}>PATRIMÔNIO</Text>
+                                <Text style={styles.conteudo}>C$ 130.39</Text>
+                            </View>
+                            <View>
+                                <Text style={styles.titulo}>ÚLTIMA PONTUAÇÃO</Text>
+                                <Text style={styles.conteudo}>91.19</Text>
+                            </View>
+                            <View>
+                                <Text style={styles.titulo}>TOTAL</Text>
+                                <Text style={styles.conteudo}>772.82</Text>
+                            </View>
+                        </View>
+                    </Card>
+                    <Card >
+                        <View style={styles.containerDetalhes}>
+                            <View>
+                                <Text style={styles.rodada}>RODADA 15</Text>
+                                <Text style={styles.descricao}>Você precisa montar seu time</Text>
+                            </View>
+                            <View>
+                                <TouchableOpacity style={styles.botaoRevisar}>
+                                    <Text style={styles.textoRevisar}>REVISAR</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </Card>
+
+                    <View style={styles.containerRodadas}>
+                        <View>
+                            <Text style={styles.tituloRodada}>JOGOS DA RODADA { rodadas.rodada }</Text>
+                        </View>
+
+                        {rodadas.map((rodada) => (
+                            <Card>
+                                <View style={styles.cardRodada}>
+                                    <Text>{rodada.partida_data} - {rodada.local}</Text>
+                                 
+                                    {Object.values(clubes).map(([id, clube]) => (
+                                        <Text key={id}>{clube.nome}</Text>
+                                    ))}
+                                </View>
+                            </Card>
+                        ))}
+                    </View>
+                </View>
             </View>
-        </View>
-    );
+        </ScrollView>
+    )
 }
 
     const styles = StyleSheet.create({
         container: {
-            flex:1,
-            marginHorizontal: 20,
+            paddingTop: 10,
+            marginHorizontal: 10,
+            gap:2,
         }, 
 
-        containerCabecalho: {
-            display: 'flex',
+        containerCard:{
+            display: 'flex', 
             flexDirection: 'row',
-            justifyContent: 'space-between',      
-            backgroundColor: '#fff',
-            justifyContent: 'center',
-            padding: 8,
-            gap: 50
+            alignItems: 'center',
+            gap: 40,
+        },
+
+        containerDetalhes:{
+            display: "flex",
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+        },
+
+        perfil:{
+            alignItems: 'flex-end',
+        },
+
+        verPerfil:{
+            fontSize: 12,
+            color: '#ff7400',
+            fontWeight: 'bold',
         },
 
         containerConteudo:{
-            alignItems: 'center',
+            marginTop: 20,
+            flexDirection: 'row',
+            justifyContent: 'space-around',
+        },
+
+        nomePerfil:{
+            fontSize: 18,
+            fontWeight: 'bold',
+            textAlign: 'center',
+        },
+
+        nivelPerfil:{
+            fontSize: 14,
+            color: 'gray',
+            textAlign: 'center',
         },
 
         titulo:{
             fontSize: 10,
-            color: 'gray'
+            color: 'gray',
+            textAlign: 'center',
         },
 
         conteudo:{
             fontSize: 14,
             fontWeight: 'bold',
-        }
+            textAlign: 'center',
+        },
+
+        rodada:{
+            fontSize: 10,
+            color: 'gray',
+        },
+
+        descricao:{
+            fontSize: 11,
+        },
+
+        botaoRevisar:{
+            backgroundColor: '#B22222',
+            paddingHorizontal: 10, 
+            paddingVertical: 4, 
+            borderColor: '#000',
+        },
+
+        textoRevisar:{
+            fontSize: 10,
+            color: '#fff',
+        },
+
+        image:{
+            width: 100,
+            height: 100,
+        },
+
+        containerRodadas:{
+            marginTop: 20,
+            gap:1,
+            marginBottom: 20,
+        },
+
+        tituloRodada:{
+            fontSize:14,
+            fontWeight: 'bold',
+            textAlign: 'center',
+            paddingBottom: 10,
+        },
+         
+        cardRodada:{
+            justifyContent: 'center',
+            paddingVertical: 10,
+            alignItems: 'center',        
+        },
     })
 
 export default Dashboard;

@@ -1,5 +1,4 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Dashboard from './src/pages/Dashboard';
@@ -18,6 +17,14 @@ export default function App() {
       <Tab.Navigator screenOptions={{
         tabBarActiveTintColor:'orange',
         tabBarInactiveTintColor:'gray',
+
+        headerLeft: () => (
+          <MaterialCommunityIcons name='menu' size={25} color={'#fff'} marginHorizontal={10}/>
+        ),
+
+        headerRight: () => (
+          <Ionicons name="notifications-sharp" size={23} color={'#fff'} marginRight={10}/>
+        ),
       
         headerStyle:{
           backgroundColor: '#ff7400',
