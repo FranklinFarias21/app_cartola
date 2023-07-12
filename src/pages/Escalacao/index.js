@@ -33,7 +33,6 @@ const Escalacao = () => {
         .then((resp) => resp.json())
         .then((data) => {
             setApi(data)
-            // console.log(api)
         })
     }, [])
 
@@ -57,8 +56,8 @@ const Escalacao = () => {
                     height: 40,
                     marginHorizontal: 10,
                     backgroundColor: '#fff',
-                    marginTop: 10,
-                    marginBottom: 10,
+                    marginTop: 15,
+                    marginBottom: 15,
                 }}
                 buttonTextStyle={{
                     color: '#ff7400',
@@ -142,7 +141,7 @@ const Escalacao = () => {
         tituloBanco:{
             fontWeight: 'bold',
             textAlign: 'center',
-            marginBottom: 6,
+            marginBottom: 15,
         },
 
         bancoReserva:{

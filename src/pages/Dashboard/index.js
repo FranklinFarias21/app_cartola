@@ -2,11 +2,12 @@ import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "rea
 import Cabecalho from "../../components/Cabecalho";
 import Card from "../../components/Card";
 import { useEffect, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 const Dashboard = () => {
 
     const [rodadas, setRodadas] = useState([])
-    const [clubes, setClubes] = useState([])
+    const navigation = useNavigation()
 
     useEffect(() => {
         fetch('https://api.cartola.globo.com/partidas', {
@@ -17,19 +18,23 @@ const Dashboard = () => {
         })
         .then((resp) => resp.json())
         .then((data) => {
-            setRodadas(data.partidas)
-        })
-        .then((data) => {
-            setClubes(data.clubes)
+            if (data != 'undefined'){
+                setRodadas(data)
+            }
         })
         .catch((error) => {
             console.error('Erro ao obter dados:', error)
         })
     }, [])
 
-    {Object.values(clubes).forEach(clube => {
-        console.log(clube.nome_fantasia)
-    })}
+    const getCorBolinha = (aproveitamento) => {
+        if (aproveitamento === "v") {
+          return "green"
+        } else if (aproveitamento === "d") {
+          return "red"
+        } else {
+          return "gray"
+    }}
 
     return (
         <ScrollView>
@@ -71,7 +76,7 @@ const Dashboard = () => {
                                 <Text style={styles.descricao}>Você precisa montar seu time</Text>
                             </View>
                             <View>
-                                <TouchableOpacity style={styles.botaoRevisar}>
+                                <TouchableOpacity style={styles.botaoRevisar} onPress={() => navigation.navigate('Escalação')}>
                                     <Text style={styles.textoRevisar}>REVISAR</Text>
                                 </TouchableOpacity>
                             </View>
@@ -83,17 +88,32 @@ const Dashboard = () => {
                             <Text style={styles.tituloRodada}>JOGOS DA RODADA { rodadas.rodada }</Text>
                         </View>
 
-                        {rodadas.map((rodada) => (
-                            <Card>
-                                <View style={styles.cardRodada}>
-                                    <Text>{rodada.partida_data} - {rodada.local}</Text>
-                                 
-                                    {Object.values(clubes).map(([id, clube]) => (
-                                        <Text key={id}>{clube.nome}</Text>
-                                    ))}
-                                </View>
-                            </Card>
-                        ))}
+                        {rodadas.partidas && Object.entries(rodadas.partidas).map(([id, partida]) => {
+                            const clubeCasa = rodadas.clubes[partida.clube_casa_id];
+                            const clubeVisitante = rodadas.clubes[partida.clube_visitante_id];
+
+                            const imageUrlCasa = rodadas.clubes[partida.clube_casa_id].escudos["60x60"]
+                            const imageUrlVisitante = rodadas.clubes[partida.clube_visitante_id].escudos["60x60"]
+
+                            return(
+                                <Card key={id}>
+                                    <View style={styles.cardRodada}>
+                                        <Text>{partida.partida_data} - {partida.local}</Text>
+                                        <View style={styles.confronto}>
+                                            {partida.aproveitamento_mandante.map((aproveitamento, index) => (
+                                                <View key={index} style={[styles.bolinha, { backgroundColor: getCorBolinha(aproveitamento) }]} />
+                                            ))}
+                                            <Image source={{uri: imageUrlCasa }} style={{ width: 30, height: 30 }} />
+                                            <Text>x</Text>
+                                            <Image source={{uri: imageUrlVisitante }} style={{ width: 30, height: 30 }} />
+                                            {partida.aproveitamento_visitante.map((aproveitamento, index) => (
+                                                <View key={index} style={[styles.bolinha, { backgroundColor: getCorBolinha(aproveitamento) }]} />
+                                            ))}
+                                        </View>
+                                    </View>
+                                </Card>
+                            )
+                        })}
                     </View>
                 </View>
             </View>
@@ -205,6 +225,22 @@ const Dashboard = () => {
             justifyContent: 'center',
             paddingVertical: 10,
             alignItems: 'center',        
+            gap: 10,
+        },
+
+        confronto:{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: 10,
+            alignItems: 'center',
+            justifyContent: 'center',
+        },
+
+        bolinha: {
+            width: 8,
+            height: 8,
+            borderRadius: 5,
+            marginHorizontal: 1,
         },
     })
 

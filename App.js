@@ -7,10 +7,11 @@ import Amigos from './src/pages/Amigos';
 import { MaterialCommunityIcons, Ionicons  } from '@expo/vector-icons'
 import Competicoes from './src/pages/Competicoes';
 import Pro from './src/pages/Pro';
+import Goleiro from './src/components/Jogadores/Goleiro';
 
 export default function App() {
 
-  Tab = createBottomTabNavigator()
+  const Tab = createBottomTabNavigator()
 
   return (
     <NavigationContainer>
@@ -60,7 +61,7 @@ export default function App() {
             <Ionicons name='people-outline' color={color} size={size}/>
           )
         }}/>
-        <Tab.Screen name="Cartola Pro" component={Pro} options={{
+        <Tab.Screen name="Goleiro" component={Goleiro} options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name='lock-outline' color={color} size={size}/>
           )
