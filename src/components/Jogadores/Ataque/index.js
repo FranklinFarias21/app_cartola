@@ -3,9 +3,9 @@ import { Image, Text, View } from "react-native";
 import Card from "../../Card";
 import { ScrollView } from "react-native";
 
-const Goleiro = () => {
+const Ataque = () => {
 
-    const [goleiros, setGoleiros] = useState()
+    const [atacantes, setAtacantes] = useState()
 
     useEffect(() => {
         fetch('https://api.cartola.globo.com/atletas/mercado', {
@@ -16,19 +16,19 @@ const Goleiro = () => {
         })
         .then((resp) => resp.json())
         .then((data) => {
-            const apenasGoleiro = data.atletas.filter((atleta) => atleta.posicao_id === 1)
-            setGoleiros(apenasGoleiro)
+            const apenasAtacantes = data.atletas.filter((atleta) => atleta.posicao_id === 5)
+            setAtacantes(apenasAtacantes)
         })
     }, [])
 
     return (
         <ScrollView>
             <View>
-                {goleiros && goleiros.map((goleiro) => {
+                {atacantes && atacantes.map((ataque) => {
                     return(
-                        <Card key={goleiro.atleta_id}>    
-                            <Image source={{uri: 'https://i.pinimg.com/736x/97/e1/57/97e157c49e484987fb81fd23f6997a1e.jpg'}} style={{ width: 70, height: 70 }} />
-                            <Text>{goleiro.apelido}</Text>
+                        <Card key={ataque.atleta_id}>    
+                            {/* <Image source={{uri: `${ataque.foto}` }} style={{ width: 40, height: 40 }} /> */}
+                            <Text>{ataque.apelido}</Text>
                         </Card>
                     )
                 })}
@@ -37,4 +37,4 @@ const Goleiro = () => {
     )
 }
 
-export default Goleiro;
+export default Ataque;

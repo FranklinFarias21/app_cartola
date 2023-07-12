@@ -9,48 +9,48 @@ const Formacao1 = () => {
     return (
         <View style={styles.formacao}>
             <View style={styles.tecnico}>
-                <TouchableOpacity onPress={() => console.log('Técnico')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Técnicos')}>
                     <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-97} marginHorizontal={-132}/>
                 </TouchableOpacity>
             </View>
             <View style={styles.goleiro}>
-                <TouchableOpacity onPress={() => navigation.navigate('Goleiro')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Goleiros')}>
                     <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-100}/> 
                 </TouchableOpacity>
             </View>
             <View style={styles.defesa}>
-                <TouchableOpacity onPress={() => console.log('Lateral Esquerdo')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Laterais')}>
                     <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-170}/>
                 </TouchableOpacity>  
-                <TouchableOpacity onPress={() => console.log('Zagueiro Esquerdo')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Zagueiros')}>
                     <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-170}/>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => console.log('Zagueiro Direito')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Zagueiros')}>
                     <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-170}/>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => console.log('Lateral Direito')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Laterais')}>
                     <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-170}/>
                 </TouchableOpacity>
             </View>
             <View style={styles.meio}>
-                <TouchableOpacity onPress={() => console.log('Meio Campo Esquerda')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Meias')}>
                     <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-270}/>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => console.log('Meio Campo Armador')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Meias')}>
                     <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-270}/>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => console.log('Meio Campo Direito')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Meias')}>
                     <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-270}/>
                 </TouchableOpacity>
             </View>
             <View style={styles.ataque}>
-                <TouchableOpacity onPress={() => console.log('Ala Esquerda')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Atacantes')}>
                     <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-380}/>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => console.log('Centroavante')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Atacantes')}>
                     <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-380}/>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => console.log('Ala Direita')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Atacantes')}>
                     <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-380}/>
                 </TouchableOpacity>
             </View>
