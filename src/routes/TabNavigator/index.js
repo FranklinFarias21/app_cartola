@@ -1,4 +1,4 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons, Ionicons  } from '@expo/vector-icons'
 import Dashboard from '../../pages/Dashboard'
@@ -6,11 +6,13 @@ import Escalacao from '../../pages/Escalacao'
 import Competicoes from '../../pages/Competicoes'
 import Amigos from '../../pages/Amigos'
 import Pro from '../../pages/Pro'
+import { TouchableOpacity } from 'react-native';
 
 
 const TabNavigator = () => {
 
     const Tab = createBottomTabNavigator()
+    const navigation = useNavigation()
 
     return (
         <Tab.Navigator screenOptions={{
@@ -18,7 +20,9 @@ const TabNavigator = () => {
             tabBarInactiveTintColor:'gray',
 
             headerLeft: () => (
-                <MaterialCommunityIcons name='menu' size={25} color={'#fff'} marginHorizontal={10}/>
+                <TouchableOpacity onPress={() => navigation.openDrawer()}>
+                    <MaterialCommunityIcons name='menu' size={25} color={'#fff'} marginHorizontal={10}/>
+                </TouchableOpacity>
             ),
 
             headerRight: () => (

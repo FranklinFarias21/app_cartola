@@ -1,11 +1,11 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import TabNavigator from '../TabNavigator';
 import Goleiro from '../../components/Jogadores/Goleiro';
 import Zagueiro from '../../components/Jogadores/Zagueiro';
 import Lateral from '../../components/Jogadores/Lateral';
 import Meia from '../../components/Jogadores/Meio';
 import Ataque from '../../components/Jogadores/Ataque';
 import Tecnico from '../../components/Jogadores/Tecnico';
+import DrawerNavigator from '../DrawerNavigator';
 
 
 const StackNavigator = () => {
@@ -20,8 +20,8 @@ const StackNavigator = () => {
             headerTintColor: '#fff',
         }}>
 
-            <Stack.Screen name="TabNavigator" component={TabNavigator} options={{
-                headerShown:false
+            <Stack.Screen name="TabNavigator" component={DrawerNavigator} options={{
+                headerShown:false,
             }}/>
 
             <Stack.Screen name="Goleiros" component={Goleiro} />
