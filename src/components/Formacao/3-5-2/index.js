@@ -1,30 +1,59 @@
 import { Text, View, Image, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons"
+import { TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const Formacao3 = () => {
+
+    const navigation = useNavigation()
+
     return (
         <View style={styles.formacao}>
             <View style={styles.tecnico}>
-                <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-97} marginHorizontal={-132}/>
+                <TouchableOpacity onPress={() => navigation.navigate('Técnicos')}>
+                    <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-97} marginHorizontal={-132}/>
+                </TouchableOpacity>
             </View>
             <View style={styles.goleiro}>
-                <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-100}/>
+                <TouchableOpacity onPress={() => navigation.navigate('Goleiros')}>
+                    <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-100}/>
+                </TouchableOpacity>
             </View>
             <View style={styles.defesa}>
-                <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-170}/>
-                <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-170}/>
-                <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-170}/>
+                <TouchableOpacity onPress={() => navigation.navigate('Zagueiros')}>
+                    <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-170}/>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Zagueiros')}>
+                    <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-170}/>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Zagueiros')}>
+                    <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-170}/>
+                </TouchableOpacity>
             </View>
             <View style={styles.meio}>
-                <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-270}/>
-                <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-270}/>
-                <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-270}/>
-                <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-270}/>
-                <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-270}/>
+                <TouchableOpacity onPress={() => navigation.navigate('Meias')}>
+                    <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-270}/>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Meias')}>
+                    <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-270}/>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Meias')}>
+                    <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-270}/>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Meias')}>
+                    <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-270}/>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Meias')}>
+                    <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-270}/>
+                </TouchableOpacity>
             </View>
             <View style={styles.ataque}>
-                <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-380}/>
-                <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-380}/>
+                <TouchableOpacity onPress={() => navigation.navigate('Atacantes')}>
+                    <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-380}/>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Atacantes')}>
+                    <Ionicons name="add-circle" size={40} color='#32CD32' marginTop={-380}/>
+                </TouchableOpacity>
             </View>
         </View>
     );
