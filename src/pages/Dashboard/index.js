@@ -104,7 +104,7 @@ const Dashboard = () => {
                                                 <View key={index} style={[styles.bolinha, { backgroundColor: getCorBolinha(aproveitamento) }]} />
                                             ))}
                                             <Image source={{uri: imageUrlCasa }} style={{ width: 30, height: 30 }} />
-                                            <Text>x</Text>
+                                            <Text>{partida.placar_oficial_mandante} x {partida.placar_oficial_visitante}</Text>
                                             <Image source={{uri: imageUrlVisitante }} style={{ width: 30, height: 30 }} />
                                             {partida.aproveitamento_visitante.map((aproveitamento, index) => (
                                                 <View key={index} style={[styles.bolinha, { backgroundColor: getCorBolinha(aproveitamento) }]} />
