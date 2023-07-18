@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Image, Text, View, ScrollView, StyleSheet } from "react-native";
 import Card from "../../Card";
+import Cabecalho from "../../Cabecalho";
 
 const Goleiro = () => {
 
@@ -23,56 +24,59 @@ const Goleiro = () => {
     }, [])
 
     return (
-        <ScrollView>
-            <View>
-                {goleiros && goleiros.map((goleiro) => {
+        <View> 
+            <Cabecalho />
+            <ScrollView>
+                <View>
+                    {goleiros && goleiros.map((goleiro) => {
 
-                    const infoClube = clubes[goleiro.clube_id]
+                        const infoClube = clubes[goleiro.clube_id]
 
-                    return(
-                        <Card key={goleiro.atleta_id}>    
-                            <View style={styles.containerGoleiro}>
-                                <View style={styles.clube}>
-                                    <Image source={{uri: infoClube.escudos['60x60'] }} style={{ width: 40, height: 40 }} />
-                                    <Text style={styles.nomeClube}>{infoClube.nome}</Text>
-                                </View>
-                                <View>
-                                    <Text style={styles.nomeAtleta}>{goleiro.apelido}</Text>
-                                    <View style={styles.scout}>
-                                        <View>
-                                            <Text style={styles.nomeClube}>DE</Text>
-                                            <Text>{goleiro.scout['DE']}</Text>
-                                        </View>
-                                        <View>
-                                            <Text style={styles.nomeClube}>FS</Text>
-                                            <Text>{goleiro.scout['FS']}</Text>
-                                        </View>
-                                        <View>
-                                            <Text style={styles.nomeClube}>GS</Text>
-                                            <Text>{goleiro.scout['GS']}</Text>
-                                        </View>
-                                        <View>
-                                            <Text style={styles.nomeClube}>SG</Text>
-                                            <Text>{goleiro.scout['SG']}</Text>
-                                        </View>
-                                        <View>
-                                            <Text style={styles.nomeClube}>JG</Text>
-                                            <Text>{goleiro.jogos_num}</Text>
+                        return(
+                            <Card key={goleiro.atleta_id}>    
+                                <View style={styles.containerGoleiro}>
+                                    <View style={styles.clube}>
+                                        <Image source={{uri: infoClube.escudos['60x60'] }} style={{ width: 40, height: 40 }} />
+                                        <Text style={styles.nomeClube}>{infoClube.nome}</Text>
+                                    </View>
+                                    <View>
+                                        <Text style={styles.nomeAtleta}>{goleiro.apelido}</Text>
+                                        <View style={styles.scout}>
+                                            <View>
+                                                <Text style={styles.nomeClube}>DE</Text>
+                                                <Text>{goleiro.scout['DE']}</Text>
+                                            </View>
+                                            <View>
+                                                <Text style={styles.nomeClube}>FS</Text>
+                                                <Text>{goleiro.scout['FS']}</Text>
+                                            </View>
+                                            <View>
+                                                <Text style={styles.nomeClube}>GS</Text>
+                                                <Text>{goleiro.scout['GS']}</Text>
+                                            </View>
+                                            <View>
+                                                <Text style={styles.nomeClube}>SG</Text>
+                                                <Text>{goleiro.scout['SG']}</Text>
+                                            </View>
+                                            <View>
+                                                <Text style={styles.nomeClube}>JG</Text>
+                                                <Text>{goleiro.jogos_num}</Text>
+                                            </View>
                                         </View>
                                     </View>
-                                </View>
-                                <View>
-                                    <Text style={styles.nomeClube}>MÉDIA</Text>
-                                    <Text>{goleiro.media_num}</Text>
-                                    <Text style={styles.nomeClube}>PREÇO</Text>
-                                    <Text>{goleiro.preco_num}</Text>
-                                </View>
-                            </View> 
-                        </Card>
-                    )
-                })}
-            </View>
-        </ScrollView>
+                                    <View>
+                                        <Text style={styles.nomeClube}>MÉDIA</Text>
+                                        <Text>{goleiro.media_num}</Text>
+                                        <Text style={styles.nomeClube}>PREÇO</Text>
+                                        <Text>{goleiro.preco_num}</Text>
+                                    </View>
+                                </View> 
+                            </Card>
+                        )
+                    })}
+                </View>
+            </ScrollView>
+        </View>
     )
 }
 

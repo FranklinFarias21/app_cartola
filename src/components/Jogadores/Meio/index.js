@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Image, Text, View, StyleSheet, ScrollView } from "react-native";
 import Card from "../../Card";
+import Cabecalho from "../../Cabecalho";
 
 const Meia = () => {
 
@@ -23,72 +24,75 @@ const Meia = () => {
     }, [])
 
     return (
-        <ScrollView>
-            <View>
-                {meias && meias.map((meia) => {
+        <View>
+            <Cabecalho />
+            <ScrollView>
+                <View>
+                    {meias && meias.map((meia) => {
 
-                    const infoClube = clubes[meia.clube_id]
+                        const infoClube = clubes[meia.clube_id]
 
-                    return(
-                        <Card key={meia.atleta_id}>    
-                            <View style={styles.containerMeia}>
-                                <View style={styles.clube}>
-                                    <Image source={{uri: infoClube.escudos['60x60'] }} style={{ width: 40, height: 40 }} />
-                                    <Text style={styles.nomeClube}>{infoClube.nome}</Text>
-                                </View>
-                                <View>
-                                    <Text style={styles.nomeAtleta}>{meia.apelido}</Text>
-                                    <View style={styles.scout}>
-                                        <View>
-                                            <Text style={styles.nomeClube}>A</Text>
-                                            <Text>{meia.scout['A']}</Text>
-                                        </View>
-                                        <View>
-                                            <Text style={styles.nomeClube}>G</Text>
-                                            <Text>{meia.scout['G']}</Text>
-                                        </View>
-                                        <View>
-                                            <Text style={styles.nomeClube}>CA</Text>
-                                            <Text>{meia.scout['CA']}</Text>
-                                        </View>
-                                        <View>
-                                            <Text style={styles.nomeClube}>DS</Text>
-                                            <Text>{meia.scout['DS']}</Text>
-                                        </View>
-                                        <View>
-                                            <Text style={styles.nomeClube}>FC</Text>
-                                            <Text>{meia.scout['FC']}</Text>
-                                        </View>
-                                        <View>
-                                            <Text style={styles.nomeClube}>FD</Text>
-                                            <Text>{meia.scout['FD']}</Text>
-                                        </View>
-                                        <View>
-                                            <Text style={styles.nomeClube}>FF</Text>
-                                            <Text>{meia.scout['FF']}</Text>
-                                        </View>
-                                        <View>
-                                            <Text style={styles.nomeClube}>FS</Text>
-                                            <Text>{meia.scout['FS']}</Text>
-                                        </View>
-                                        <View>
-                                            <Text style={styles.nomeClube}>JG</Text>
-                                            <Text>{meia.jogos_num}</Text>
+                        return(
+                            <Card key={meia.atleta_id}>    
+                                <View style={styles.containerMeia}>
+                                    <View style={styles.clube}>
+                                        <Image source={{uri: infoClube.escudos['60x60'] }} style={{ width: 40, height: 40 }} />
+                                        <Text style={styles.nomeClube}>{infoClube.nome}</Text>
+                                    </View>
+                                    <View>
+                                        <Text style={styles.nomeAtleta}>{meia.apelido}</Text>
+                                        <View style={styles.scout}>
+                                            <View>
+                                                <Text style={styles.nomeClube}>A</Text>
+                                                <Text>{meia.scout['A']}</Text>
+                                            </View>
+                                            <View>
+                                                <Text style={styles.nomeClube}>G</Text>
+                                                <Text>{meia.scout['G']}</Text>
+                                            </View>
+                                            <View>
+                                                <Text style={styles.nomeClube}>CA</Text>
+                                                <Text>{meia.scout['CA']}</Text>
+                                            </View>
+                                            <View>
+                                                <Text style={styles.nomeClube}>DS</Text>
+                                                <Text>{meia.scout['DS']}</Text>
+                                            </View>
+                                            <View>
+                                                <Text style={styles.nomeClube}>FC</Text>
+                                                <Text>{meia.scout['FC']}</Text>
+                                            </View>
+                                            <View>
+                                                <Text style={styles.nomeClube}>FD</Text>
+                                                <Text>{meia.scout['FD']}</Text>
+                                            </View>
+                                            <View>
+                                                <Text style={styles.nomeClube}>FF</Text>
+                                                <Text>{meia.scout['FF']}</Text>
+                                            </View>
+                                            <View>
+                                                <Text style={styles.nomeClube}>FS</Text>
+                                                <Text>{meia.scout['FS']}</Text>
+                                            </View>
+                                            <View>
+                                                <Text style={styles.nomeClube}>JG</Text>
+                                                <Text>{meia.jogos_num}</Text>
+                                            </View>
                                         </View>
                                     </View>
-                                </View>
-                                <View>
-                                    <Text style={styles.nomeClube}>MÉDIA</Text>
-                                    <Text>{meia.media_num}</Text>
-                                    <Text style={styles.nomeClube}>PREÇO</Text>
-                                    <Text>{meia.preco_num}</Text>
-                                </View>
-                            </View> 
-                        </Card>
-                    )
-                })}
-            </View>
-        </ScrollView>
+                                    <View>
+                                        <Text style={styles.nomeClube}>MÉDIA</Text>
+                                        <Text>{meia.media_num}</Text>
+                                        <Text style={styles.nomeClube}>PREÇO</Text>
+                                        <Text>{meia.preco_num}</Text>
+                                    </View>
+                                </View> 
+                            </Card>
+                        )
+                    })}
+                </View>
+            </ScrollView>
+        </View>
     )
 }
 

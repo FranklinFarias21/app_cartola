@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Image, Text, View, StyleSheet } from "react-native";
 import Card from "../../Card";
 import { ScrollView } from "react-native";
+import Cabecalho from "../../Cabecalho";
 
 const Tecnico = () => {
 
@@ -24,44 +25,47 @@ const Tecnico = () => {
     }, [])
 
     return (
-        <ScrollView>
-            <View>
-                {tecnicos && tecnicos.map((tecnico) => {
+        <View>
+            <Cabecalho />
+            <ScrollView>
+                <View>
+                    {tecnicos && tecnicos.map((tecnico) => {
 
-                    const infoClube = clubes[tecnico.clube_id]
+                        const infoClube = clubes[tecnico.clube_id]
 
-                    return(                    
-                        <Card key={tecnico.atleta_id}>    
-                            <View style={styles.containerTecnico}>
-                                <View style={styles.clube}>
-                                    <Image source={{uri: infoClube.escudos['60x60'] }} style={{ width: 40, height: 40 }} />
-                                    <Text style={styles.nomeClube}>{infoClube.nome}</Text>
-                                </View>
-                                <View>
-                                    <Text style={styles.nomeAtleta}>{tecnico.apelido}</Text>
-                                    <View style={styles.scout}>
-                                        <View>
-                                            <Text style={styles.nomeClube}>V</Text>
-                                            <Text>{tecnico.scout['V']}</Text>
-                                        </View>
-                                        <View>
-                                            <Text style={styles.nomeClube}>JG</Text>
-                                            <Text>{tecnico.jogos_num}</Text>
+                        return(                    
+                            <Card key={tecnico.atleta_id}>    
+                                <View style={styles.containerTecnico}>
+                                    <View style={styles.clube}>
+                                        <Image source={{uri: infoClube.escudos['60x60'] }} style={{ width: 40, height: 40 }} />
+                                        <Text style={styles.nomeClube}>{infoClube.nome}</Text>
+                                    </View>
+                                    <View>
+                                        <Text style={styles.nomeAtleta}>{tecnico.apelido}</Text>
+                                        <View style={styles.scout}>
+                                            <View>
+                                                <Text style={styles.nomeClube}>V</Text>
+                                                <Text>{tecnico.scout['V']}</Text>
+                                            </View>
+                                            <View>
+                                                <Text style={styles.nomeClube}>JG</Text>
+                                                <Text>{tecnico.jogos_num}</Text>
+                                            </View>
                                         </View>
                                     </View>
-                                </View>
-                                <View>
-                                    <Text style={styles.nomeClube}>MÉDIA</Text>
-                                    <Text>{tecnico.media_num}</Text>
-                                    <Text style={styles.nomeClube}>PREÇO</Text>
-                                    <Text>{tecnico.preco_num}</Text>
-                                </View>
-                                </View> 
-                        </Card>
-                    )
-                })}
-            </View>
-        </ScrollView>
+                                    <View>
+                                        <Text style={styles.nomeClube}>MÉDIA</Text>
+                                        <Text>{tecnico.media_num}</Text>
+                                        <Text style={styles.nomeClube}>PREÇO</Text>
+                                        <Text>{tecnico.preco_num}</Text>
+                                    </View>
+                                    </View> 
+                            </Card>
+                        )
+                    })}
+                </View>
+            </ScrollView>
+        </View>
     )
 }
 
